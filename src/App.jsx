@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Contato from './pages/Contato'
+import Error from './pages/Error'
+import Home from './pages/Home'
+import Lancamento from "./pages/Lancamento";
+import Layout from './pages/Layout'
+import Liquidacao from "./pages/Liquidacao";
+import Loja from './pages/Loja'
+import Novidades from "./pages/Novidades";
+import Sobre from "./pages/Sobre";
+import Carrinho from "./pages/Carrinho";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>Bem vindo ao site!</h1>
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="loja" element={<Loja />} />
+            <Route path="carrinho" element={<Carrinho />} />
+            <Route path="novidades" element={<Novidades />} />
+            <Route path="lancamento" element={<Lancamento />} />
+            <Route path="liquidacao" element={<Liquidacao />} />
+            <Route path="contato" element={<Contato />} />
+            <Route path="sobre" element={<Sobre />} />
+            <Route path="*" element={<Error />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   )
 }
 
